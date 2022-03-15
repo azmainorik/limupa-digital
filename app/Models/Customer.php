@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Customer extends Model
+{
+    use HasFactory;
+
+    private static $customer;
+    private static $name;
+    private static $email;
+    private static $mobile;
+    private static $address;
+
+    public static function newCustomer($request)
+    {
+        
+        self::$customer = new customer();
+        self::$customer->name= $request->name;
+        self::$customer->email= $request->email;
+        self::$customer->mobile= $request->mobile;
+        self::$customer->address= $request->address;
+        self::$customer->save();
+
+    }
+
+
+}
