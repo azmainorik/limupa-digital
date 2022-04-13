@@ -13,14 +13,22 @@ use Illuminate\Http\Request;
 class BrandController extends Controller
 {
     
-
-
     private  $brands;
     private  $brand;
 
     public function index()
     {
-        return view('admin.brand.add');
+        $this->categories = Category::all();
+        $this->subcategories = subCategory::all();
+
+        return view('admin.brand.add',   [
+            
+            'categories' => $this->categories,
+            'subcategories' => $this->subcategories,
+
+
+        ]);   
+        
     }
 
     public function create(Request $request)

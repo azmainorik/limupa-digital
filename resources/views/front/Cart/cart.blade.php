@@ -74,7 +74,11 @@
                                                    {{number_format($tax)}}</span></li>
                                                 <li>Total <span>{{number_format(($sum+$tax))}}</span></li>
                                             </ul>
-                                            <a href="{{route('checkout')}}">Proceed to checkout</a>
+                                            @if(Session::get("customerId"))
+                                            <a href="{{route('checkout-shipping')}}">Proceed to checkout</a>
+                                            @else
+                                            <a href="{{route('customer-detail')}}">Proceed to checkout</a>
+                                             @endif
                                         </div>
                                     </div>
                                 </div>

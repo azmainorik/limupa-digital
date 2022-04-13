@@ -41,6 +41,8 @@ class Brand extends Model
     public static function newBrand($request)
     {
         self::$brand = new Brand();
+        self::$brand->category_id=$request->category_id;
+        self::$brand->sub_category_id=$request->subcategory_id;
         self::$brand->name = $request->name;
         self::$brand->description = $request->description;
         self::$brand->image = self::getImageUrl($request);
@@ -90,5 +92,14 @@ class Brand extends Model
         self::$brand->delete();
 
     }
+
+
+
+    
+    public function subCategory()
+    {
+       return $this->belongsTo('App\Models\SubCategory');
+    }
+
 
 }

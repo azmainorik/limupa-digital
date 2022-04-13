@@ -52,6 +52,15 @@
                             
                             <li><a class="nav-link" href="{{route('unit.manage')}}">Manage Unit</a></li>
                         </ul>
+
+                  </li>
+                  <li class="dropdown">
+                      <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Order</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="nav-link" href="{{route('unit.add')}}">Add Order</a></li>
+                            
+                            <li><a class="nav-link" href="{{route('order.manage')}}">Manage Order</a></li>
+                        </ul>
                   </li>
                 </ul>
             <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

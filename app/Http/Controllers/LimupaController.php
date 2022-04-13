@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Brand;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
 class LimupaController extends Controller
@@ -16,7 +18,7 @@ class LimupaController extends Controller
 
     public function index()
     {
-       $this->categories = Category::all(); 
+       $this->categories = Category:: where('status', '1')->get(); 
                
        return view('front.home.home',[
 
@@ -28,11 +30,12 @@ class LimupaController extends Controller
 
 
 
-   public function categoryProduct($id)
+
+   public function brandProduct($id)
    {
       
       $this->categories = Category::all(); 
-      $this->products = Product:: where('category_id', $id)->orderBy('id', 'desc')->get();
+      $this->products = Product:: where('brand_id', $id)->orderBy('id', 'desc')->get();
         
       return view('front.category.category',[
        
@@ -45,6 +48,26 @@ class LimupaController extends Controller
    }
 
 
+
+   
+   public function brandName($id)
+   {
+      $this->categories = Category::all(); 
+      $this->subcategories = SubCategory:: where('id', $id)->get();
+      $this->brands = Brand:: where('sub_category_id', $id)->orderBy('id', 'desc')->get();
+        
+      return view('front.brand.brand',[
+       
+        'subcategories' => $this->subcategories, 
+        'brands' => $this->brands,
+        'categories' => $this->categories, 
+
+      ]);
+
+   }
+
+
+
    public function productDetail($id)
    {
 
@@ -53,6 +76,19 @@ class LimupaController extends Controller
          'categories' => Category::all(),
          'product'  => Product:: find($id),
 
+      ]);
+
+   }
+
+
+   
+   public function customerDetail()
+   {
+
+      return view('front.customer.register', [
+         
+         'categories' => Category::all(),
+         
       ]);
 
    }

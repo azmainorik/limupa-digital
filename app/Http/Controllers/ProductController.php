@@ -44,11 +44,20 @@ class ProductController extends Controller
 
 
 
+    public function getSubcategory()
+    {
+        $this->subCategories = SubCategory::where('category_id', $_GET['cat_id'])->get();
+        return json_encode($this->subCategories);
+
+    } 
+
+
+
 
     public function create(Request $request)
     {
         $this->product=Product::newProduct($request);
-        SubImage::newSubImage($this->product,$request);
+        SubImage::newSubImage($this->product,$request);        
         
         return redirect()->back()->with('message', 'Product info create successfully');
 
@@ -94,6 +103,9 @@ class ProductController extends Controller
         Product::deleteProduct($request,$id);
         return redirect('/manage-product')->with('message', 'product info delete successfully');
     }
+
+
+
 
 
 }

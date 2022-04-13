@@ -35,7 +35,53 @@
 <!-- General JS Scripts -->
 
       @include('admin.includes.script')
-     
+
+    <script>
+      
+      $(document).on('change', '#categoryId', function () {
+       
+        var categoryId = $(this).val();
+
+        var result;
+
+        console.log(categoryId);
+
+        $.ajax({
+          method: 'GET',
+            url: "{{url('/get-sub-category-by-id')}}",
+            data: {cat_id: categoryId},
+            dataType: 'json',
+           
+          success: function(res){
+
+            result=res;
+            var option = '';
+            option +='<option value="" disabled selected>--Select subcategory Name--</option>'
+            $.each(res, function (key, value)
+            {
+                option += '<option value="'+value.id+'">'+value.name+'</option>';                
+            }                        
+           );
+
+           ;
+    console.log("Inside ajax: "+result);                
+
+            $('#subCategoryID').empty().append(option);
+
+          },
+
+          error: function (e)
+          {
+              console.log(e);
+          }
+
+        });
+
+        console.log("Outside ajax: "+result); 
+    });
+
+
+   </script>
 </body>
 
 <!--   Tue, 07 Jan 2020 03:35:12 GMT -->

@@ -8,7 +8,7 @@
 <div id="app">
     <div class="main-wrapper main-wrapper-1">
         <div class="navbar-bg"></div>
-
+        
         <div class="card">
             @if($message = Session::get('message'))
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -23,28 +23,32 @@
                 <div class="card-header">
                     <h4>Add Product</h4>
                 </div>
-                @foreach($categories as $category)
+                
                 <div class="form-group-row">
                     <div class="col-sm-9 col-form-label">
                         <label>Category Name</label>
                     </div>
-                    <select class="form-control select2_demo_1" id="" name="category_id">
+                    <select class="form-control select2_demo_1" id="categoryID" name="category_id">
                         <option>---Select category Name--</option>
+                        @foreach($categories as $category)
                         <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
                     </select>
+                </div>    
+
 
                     <div class="form-group-row">
                         <div class="col-sm-9 col-form-label">
                             <label>SubCategory Name</label>
                         </div>
-                        <select class="form-control select2_demo_1" id="" name="subcategory_id">
-                            <option>---Select subcategory Name---</option>
+                        <select class="form-control select2_demo_1" id="subCategoryID" name="subcategory_id">
+                            <option value="" disabled selected>--Select subcategory Name--</option>
                             @foreach($subcategories as $subcategory)
                             <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
                             @endforeach
                         </select>
                     </div>
-                </div>
+                
 
                 <div class="form-group-row">
                     <div class="col-sm-9 col-form-label">
@@ -57,7 +61,7 @@
                         @endforeach
                     </select>
                 </div>
-                @endforeach
+                
                 <div class="form-group-row">
                     <div class="col-sm-9 col-form-label">
                         <label>Unit Name</label>
@@ -113,6 +117,7 @@
                     <div class="col-sm-9">
                         <input name="image" type="file" accept="image/*">
                     </div>
+
                 </div>
                 <div class="form-group-row">
                     <label class="col-sm-3 col-form-label">Sub_Image</label>

@@ -99,8 +99,8 @@ class Category extends Model
 
     public function subCategory()
     {
-        return $this->hasOne('App\Models\SubCategory');
-
+        return $this->hasMany(SubCategory::class)->where('status', '1');
+   
     }
 
 

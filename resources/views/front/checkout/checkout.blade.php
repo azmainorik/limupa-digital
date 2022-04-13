@@ -78,19 +78,19 @@
                                         <div class="col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>Full Name <span class="required">*</span></label>
-                                                <input placeholder="" name="name" type="text">
+                                                <input placeholder="" name="name" type="text" id="name" value="{{old('name')}}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>Email Address <span class="required">*</span></label>
-                                                <input placeholder="" name="email" type="email">
+                                                <input placeholder="" name="email" type="email"  id="email" value="{{old('email')}}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>Mobile  <span class="required">*</span></label>
-                                                <input type="text" name="mobile">
+                                                <input type="text" name="mobile" value="{{old('mobile')}}">
                                             </div>
                                         </div>
                                         <div class="col-md-12">

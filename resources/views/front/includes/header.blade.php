@@ -17,28 +17,10 @@
                                 <div class="header-top-right">
                                     <ul class="ht-menu">
                                         <!-- Begin Setting Area -->
-                                        <li>
-                                            <div class="ht-setting-trigger"><span>Setting</span></div>
-                                            <div class="setting ht-setting">
-                                                <ul class="ht-setting-list">
-                                                    <li><a href="login-register.html">My Account</a></li>
-                                                    <li><a href="checkout.html">Checkout</a></li>
-                                                    <li><a href="login-register.html">Sign In</a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
+                                       
                                         <!-- Setting Area End Here -->
                                         <!-- Begin Currency Area -->
-                                        <li>
-                                            <span class="currency-selector-wrapper">Currency :</span>
-                                            <div class="ht-currency-trigger"><span>USD $</span></div>
-                                            <div class="currency ht-currency">
-                                                <ul class="ht-setting-list">
-                                                    <li><a href="#">EUR €</a></li>
-                                                    <li class="active"><a href="#">USD $</a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
+                                       
                                         <!-- Currency Area End Here -->
                                         <!-- Begin Language Area -->
                                         <li>
@@ -59,6 +41,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <!-- Header Top Area End Here -->
                 <!-- Begin Header Middle Area -->
                 <div class="header-middle pl-sm-0 pr-sm-0 pl-xs-0 pr-xs-0">
@@ -68,7 +51,7 @@
                             <div class="col-lg-3">
                                 <div class="logo pb-sm-30 pb-xs-30">
                                     <a href="index.html">
-                                        <img src="assets/images/menu/logo/1.jpg" alt="">
+                                         
                                     </a>
                                 </div>
                             </div>
@@ -82,60 +65,21 @@
                                 <div class="header-middle-right">
                                     <ul class="hm-menu">
                                         <!-- Begin Header Middle Wishlist Area -->
-                                        <li class="hm-wishlist">
-                                            <a href="wishlist.html">
-                                                <span class="cart-item-count wishlist-item-count">0</span>
-                                                <i class="fa fa-heart-o"></i>
-                                            </a>
-                                        </li>
+                                        @if(Session::get("customerId"))
+                                        <a href="{{route('logout')}}">                                                
+                                            <button type="logout" class="btn btn-outline-warning ">Logout </button>                                                
+                                        </a>
+                                        @else
+                                        <a href="{{route('login.info')}}">                                                
+                                            <button type="button" class="btn btn-outline-warning ">Login </button>                                                
+                                        </a>
+                                        <a href="{{route('customer-detail')}}">                                                
+                                            <button type="button" class="btn btn-outline-warning ">Register </button>                                                
+                                        </a>
+                                        @endif
                                         <!-- Header Middle Wishlist Area End Here -->
                                         <!-- Begin Header Mini Cart Area -->
-                                        <li class="hm-minicart">
-                                            <div class="hm-minicart-trigger">
-                                                <span class="item-icon"></span>
-                                                <span class="item-text">£80.00
-                                                    <span class="cart-item-count">2</span>
-                                                </span>
-                                            </div>
-                                            <span></span>
-                                            <div class="minicart">
-                                                <ul class="minicart-product-list">
-                                                    <li>
-                                                        <a href="single-product.html" class="minicart-product-image">
-                                                            <img src="assets/images/product/small-size/5.jpg" alt="cart products">
-                                                        </a>
-                                                        <div class="minicart-product-details">
-                                                            <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                            <span>£40 x 1</span>
-                                                        </div>
-                                                        <button class="close" title="Remove">
-                                                            <i class="fa fa-close"></i>
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <a href="single-product.html" class="minicart-product-image">
-                                                            <img src="assets/images/product/small-size/6.jpg" alt="cart products">
-                                                        </a>
-                                                        <div class="minicart-product-details">
-                                                            <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                            <span>£40 x 1</span>
-                                                        </div>
-                                                        <button class="close" title="Remove">
-                                                            <i class="fa fa-close"></i>
-                                                        </button>
-                                                    </li>
-                                                </ul>
-                                                <p class="minicart-total">SUBTOTAL: <span>£80.00</span></p>
-                                                <div class="minicart-button">
-                                                    <a href="shopping-cart.html" class="li-button li-button-fullwidth li-button-dark">
-                                                        <span>View Full Cart</span>
-                                                    </a>
-                                                    <a href="checkout.html" class="li-button li-button-fullwidth">
-                                                        <span>Checkout</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </li>
+                                        
                                         <!-- Header Mini Cart Area End Here -->
                                     </ul>
                                 </div>
@@ -159,22 +103,26 @@
                                             <li class="dropdown-holder"><a href="">Browse Categories</a>
                                                 <ul class="hb-dropdown">
                                                     @foreach($categories as $category)
-                                                    <li class="sub-dropdown-holder"><a href="{{route('category-product', ['id' => $category->id])}}">{{$category->name}}</a>
-                                                        
+                                                    <li class="sub-dropdown-holder"><a href="">{{$category->name}}</a>
+                                                     @foreach($category->subCategory as $subCat)
+                                                      <ul class="hb-dropdown hb-sub-dropdown">
+                                                          <li><a href="{{route('brand-name', ['id' => $subCat->id])}}">{{$subCat->name}}</a></li>                                                            
+                                                      </ul>    
+                                                      @endforeach 
                                                     </li>
                                                     @endforeach
-                                                </ul>
-                                            </li>
-                                            <li><a href="about-us.html">About Us</a></li>
-                                            <li><a href="shop-left-sidebar.html">Smartwatch</a></li>
-                                            <li><a href="shop-left-sidebar.html">Accessories</a></li>
+                                                </ul>                                                
+                                            </li>                                            
                                         </ul>
+                                                                         
                                     </nav>
                                 </div>
                                 <!-- Header Bottom Menu Area End Here -->
+                                
                             </div>
                         </div>
                     </div>
+                    
                 </div>
                 <!-- Header Bottom Area End Here -->
                 <!-- Begin Mobile Menu Area -->

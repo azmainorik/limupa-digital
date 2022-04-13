@@ -45,6 +45,15 @@ class CartController extends Controller
     }
 
 
+
+    public function update(Request $request, $id)
+    {
+        Cart::update($id, $request->qty);
+        return redirect()->back()->with('message', 'Cart product info update successfully.');
+    }
+
+
+
     public function delete($id)
     {
         Cart::remove($id);

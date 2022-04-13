@@ -37,7 +37,7 @@
         <!-- Body Wrapper End Here -->
          @include('front.includes.script')
         <!-- jQuery-V1.12.4 -->
-       
+   
     </body>
 
 <!-- index30:23-->

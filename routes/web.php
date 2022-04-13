@@ -2,6 +2,7 @@
 
 
 use Illuminate\Support\Facades\Route;
+use Laravel\Jetstream\Rules\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +33,16 @@ Route::get('/dashboard', [
 
 
 
-Route::get('/category-product/{id}', [
-    'uses'      => 'App\Http\Controllers\LimupaController@categoryProduct',
-    'as'        => 'category-product'
+Route::get('/brand-product/{id}', [
+    'uses'      => 'App\Http\Controllers\LimupaController@brandProduct',
+    'as'        => 'brand-product'
+    
+]);
+
+
+Route::get('/brand-name/{id}', [
+    'uses'      => 'App\Http\Controllers\LimupaController@brandName',
+    'as'        => 'brand-name'
     
 ]);
 
@@ -42,6 +50,14 @@ Route::get('/category-product/{id}', [
 Route::get('/product-detail/{id}', [
     'uses'      => 'App\Http\Controllers\LimupaController@productDetail',
     'as'        => 'product-detail',
+   
+]);
+
+
+
+Route::get('/customer-detail', [
+    'uses'      => 'App\Http\Controllers\LimupaController@customerDetail',
+    'as'        => 'customer-detail',
    
 ]);
 
@@ -72,9 +88,45 @@ Route::get('/delete-cart/{id}', [
 
 
 
+
 Route::get('/checkout', [
     'uses'      => 'App\Http\Controllers\CheckoutController@index',
     'as'        => 'checkout'
+    
+]);
+
+
+Route::post('/customer/register', [
+    'uses'      => 'App\Http\Controllers\CheckoutController@register',
+    'as'        => 'customer.register'
+    
+]);
+
+
+Route::post('/customer/login', [
+    'uses'      => 'App\Http\Controllers\CheckoutController@login',
+    'as'        => 'customer.login'
+    
+]);
+
+
+Route::get('/login/info', [
+    'uses'      => 'App\Http\Controllers\CheckoutController@loginInfo',
+    'as'        => 'login.info'    
+]);
+
+
+Route::get('/logout', [
+    'uses'      => 'App\Http\Controllers\CheckoutController@logout',
+    'as'        => 'logout'
+    
+]);
+
+
+
+Route::get('/checkout/shipping', [
+    'uses'      => 'App\Http\Controllers\CheckoutController@shipping',
+    'as'        => 'checkout-shipping'
     
 ]);
 
@@ -111,6 +163,7 @@ Route:: get('/manage-category',[
 
 
 Route::post('/new-category', [
+
     'uses'      => 'App\Http\Controllers\CategoryController@create',
     'as'        => 'category.new',
     'middleware'=>['auth:sanctum', 'verified']
@@ -128,6 +181,7 @@ Route::get('edit-category/{id}', [
 Route::post('/update-category/{id}', [
     'uses'      => 'App\Http\Controllers\CategoryController@update',
     'as'        => 'category.update',
+    
     'middleware'=> ['auth:sanctum', 'verified']
 ]);
 
@@ -178,7 +232,6 @@ Route::post('/delete-sub-category/{id}', [
 
 
 
-
 Route::get('/add-brand-category', [
     'uses'      => 'App\Http\Controllers\BrandController@index',
     'as'        => 'brand.add',
@@ -198,6 +251,7 @@ Route::post('/new-brand-category', [
     'as'        => 'brand.new',
     'middleware'=>['auth:sanctum', 'verified']
 ]);
+
 
 
 Route::get('/edit-brand-category/{id}', [
@@ -262,7 +316,6 @@ Route::post('/delete-unit/{id}', [
 
 
 
-
 Route::get('/add-product', [
     'uses'      => 'App\Http\Controllers\ProductController@index',
     'as'        => 'product.add',
@@ -270,11 +323,25 @@ Route::get('/add-product', [
 ]);
 
 
+
+
 Route::post('/new-product', [
     'uses'      => 'App\Http\Controllers\ProductController@create',
     'as'        => 'product.new',
     'middleware'=>['auth:sanctum', 'verified']
 ]);
+
+
+Route::get('/get-sub-category-by-id',[
+
+
+    'uses' => 'App\Http\Controllers\ProductController@getSubcategory',
+    'as' => 'product.get-sub-category',
+    'middleware' => ['auth:sanctum', 'verified']
+
+]);
+
+
 
 
 Route::get('/manage-product', [
@@ -301,5 +368,19 @@ Route::post('/update-product/{id}', [
 Route::post('/delete-product/{id}', [
     'uses'      => 'App\Http\Controllers\ProductController@delete',
     'as'        => 'product.delete',
+    'middleware'=>['auth:sanctum', 'verified']
+]);
+
+
+Route::get('/manage-order', [
+    'uses'      => 'App\Http\Controllers\OrderController@manage',
+    'as'        => 'order.manage',
+    'middleware'=>['auth:sanctum', 'verified']
+]);
+
+
+Route::get('/order-info/{id}', [
+    'uses'      => 'App\Http\Controllers\OrderController@info',
+    'as'        => 'order.info',
     'middleware'=>['auth:sanctum', 'verified']
 ]);
