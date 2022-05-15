@@ -132,6 +132,13 @@
                         <label for="" class=""><input type="radio" value="0" name="status">unpublished</label>
                     </div>
                 </div>
+                <div class="col-sm-9 col-form-label">
+                    <label>Latest Status</label>
+                    <div class="col-sm-9 col-form-label">
+                        <label for="" class=""><input type="radio" value="1" name="latest">latest</label>
+                        <label for="" class=""><input type="radio" value="0" name="latest">not latest</label>
+                    </div>
+                </div>
                 <div class="card-footer text-left">
                     <button class="btn btn-primary">Submit</button>
                 </div>

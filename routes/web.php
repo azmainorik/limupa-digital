@@ -40,6 +40,7 @@ Route::get('/brand-product/{id}', [
 ]);
 
 
+
 Route::get('/brand-name/{id}', [
     'uses'      => 'App\Http\Controllers\LimupaController@brandName',
     'as'        => 'brand-name'

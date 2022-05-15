@@ -54,6 +54,7 @@ class Product extends Model
         self::$product->long_description = $request->long_description;
         self::$product->image = self::getImageUrl($request);
         self::$product->status = $request->status;
+        self::$product->Latest = $request->latest;
         self::$product->save() ;
         return self::$product;
 

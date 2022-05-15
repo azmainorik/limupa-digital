@@ -14,15 +14,21 @@ class LimupaController extends Controller
 
 
     private $categories;
+    private $latest_products;  
 
 
     public function index()
     {
        $this->categories = Category:: where('status', '1')->get(); 
+
+       $this->latest_products = Product:: where('latest' , '1')->get();
+
+      //  return $this->latest_products;
                
        return view('front.home.home',[
 
-        'categories' => $this->categories         
+        'categories' => $this->categories,    
+        'latest_products' => $this->latest_products
         
        ]);  
 

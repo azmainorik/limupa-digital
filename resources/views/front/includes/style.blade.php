@@ -30,4 +30,13 @@
         <!-- Responsive CSS -->
         <link rel="stylesheet" href="{{asset('/')}}assets/css/responsive.css">
 
+        <link rel="stylesheet" href="{{asset('/')}}assets/css/owl.carousel.css">
+        <link rel="stylesheet" href="{{asset('/')}}assets/css/owl.theme.default.css">
+
+        
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.green.min.css"/>
+
+
+  
         <script src="{{asset('/')}}assets/js/vendor/modernizr-2.8.3.min.js"></script>
